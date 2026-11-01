@@ -1,6 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
+    id("monkeysphone.packages.android.application")
+    id("monkeysphone.packages.android.application.compose")
+    id("monkeysphone.packages.android.hilt")
+    id("monkeysphone.packages.android.http")
+
+
+//    alias(libs.plugins.kotlin.android)
+
+//    alias(libs.plugins.kotlin.serialization)
+//    alias(libs.plugins.compose.compiler)
+//    alias(libs.plugins.ksp)
+//    alias(libs.plugins.hilt)
+
 }
 
 android {
@@ -28,8 +39,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true
@@ -52,4 +63,24 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+//    implementation(libs.okhttp)
+//    implementation(libs.okhttp.logging)
+//    implementation(libs.retrofit)
+//    implementation(libs.retrofit.gson)
+//    implementation("com.google.dagger:hilt-android:2.59.2")
+//    ksp("com.google.dagger:hilt-android-compiler:2.59.2")
+//    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("com.squareup.picasso:picasso:2.8")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.8")
+//    implementation(libs.kotlinx.serialization.json)
+
+
+    //core
+//    implementation(project(":core:network"))
+    implementation(project(":packages:core:designsystem"))
+    implementation(project(":packages:feature:home"))
+
+
+
 }

@@ -4,44 +4,32 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import sjw.core.monkeysphone.ui.theme.MonkeysPhoneDemoTheme
+import sjw.core.designsystem.MonkeyTheme
+import sjw.feature.home.MonkeyThemeTestScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MonkeysPhoneDemoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            MonkeyThemeTestScreen()
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+    widthDp = 960,
+    heightDp = 600,
+
+    )
 @Composable
-fun GreetingPreview() {
-    MonkeysPhoneDemoTheme {
-        Greeting("Android")
+private fun MonkeyThemeTestScreenPreview() {
+    MonkeyTheme {
+        MonkeyThemeTestScreen()
     }
 }
+
