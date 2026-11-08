@@ -1,36 +1,28 @@
 package sjw.core.network.api.monkey
 
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import sjw.core.network.ApiResponse
-import sjw.core.network.api.monkey.model.MakerListResponse
-import sjw.core.network.api.monkey.model.MobileModelDetailListResponse
-import sjw.core.network.api.monkey.model.MobileTrendListResponse
+import sjw.core.network.model.MobileTrendItemDto
+import sjw.core.network.model.MobileTrendListResponse
+import sjw.library.network.model.ApiResponse
+import sjw.library.network.retrofit.NetworkRequestFactory
+import timber.log.Timber
+import javax.inject.Inject
 
-interface MonkeyMobileApi {
+class MonkeyMobileApi @Inject constructor(
+    private val networkRequestFactory : NetworkRequestFactory
+) {
+    suspend fun getTrendList(tkIdx: Int, mkIdx: Int): List<MobileTrendItemDto> {
+        val result = networkRequestFactory.create(
+            url = "_app/mobile/modeListMobile_trend?tk_idx=$tkIdx&mk_idx=$mkIdx",
+            serializer = MobileTrendListResponse.serializer(),
+        )
 
-    /** 제조사 목록. showAllMaker가 "Y"면 전체 제조사 포함 */
-    @FormUrlEncoded
-    @POST("_app/mobile/modeListMobileMaker")
-    suspend fun getMakerList(
-        @Field("tk_idx") tkIdx: Int = 1,
-        @Field("showAllMaker") showAllMaker: String = "N",
-    ): ApiResponse<MakerListResponse>
+        return when (val res = result.response) {
+            is ApiResponse.Success -> res.data.list
+            is ApiResponse.Fail -> {
+                Timber.e(res.error, "trend list 실패 code=${result.code}")
+                emptyList()
+            }
+        }
+    }
 
-    /** 제조사별 트렌드 단말 목록 */
-    @FormUrlEncoded
-    @POST("_app/mobile/modeListMobile_trend")
-    suspend fun getTrendList(
-        @Field("tk_idx") tkIdx: Int,
-        @Field("mk_idx") mkIdx: Int,
-    ): ApiResponse<MobileTrendListResponse>
-
-    /** 단말 상세 */
-    @FormUrlEncoded
-    @POST("_app/mobile/modeDetailData")
-    suspend fun getModelDetail(
-        @Field("tk_idx") tkIdx: Int,
-        @Field("md_idx") mdIdx: Int,
-    ): ApiResponse<MobileModelDetailListResponse>
 }

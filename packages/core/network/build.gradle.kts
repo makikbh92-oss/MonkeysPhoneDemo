@@ -2,9 +2,7 @@ plugins {
 
     id("monkeysphone.packages.android.library")
     id("monkeysphone.packages.android.hilt")
-    id("monkeysphone.packages.android.http")
-    id("org.jetbrains.kotlin.plugin.serialization")
-
+    id("monkeysphone.packages.android.json")
 }
 
 android {
@@ -18,10 +16,7 @@ android {
 dependencies {
     implementation(libs.hilt.core)
     implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit)
-    implementation(libs.kotlinx.serialization.json)
-    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:3.0.0")
     ksp(libs.hilt.compiler)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(project(":packages:library:network"))
 }

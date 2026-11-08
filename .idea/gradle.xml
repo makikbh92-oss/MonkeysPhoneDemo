@@ -31,6 +31,8 @@
             <option value="$PROJECT_DIR$/packages/feature" />
             <option value="$PROJECT_DIR$/packages/feature/etc" />
             <option value="$PROJECT_DIR$/packages/feature/home" />
+            <option value="$PROJECT_DIR$/packages/library" />
+            <option value="$PROJECT_DIR$/packages/library/network" />
           </set>
         </option>
       </GradleProjectSettings>

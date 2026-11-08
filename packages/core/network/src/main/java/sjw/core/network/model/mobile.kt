@@ -1,8 +1,7 @@
-package sjw.core.network.api.monkey.model
-
-
+package sjw.core.network.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+
 @Serializable
 data class MakerDto(
     @SerialName("MK_idx") val makerIdx: String? = null,

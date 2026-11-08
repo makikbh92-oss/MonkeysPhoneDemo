@@ -52,5 +52,9 @@ gradlePlugin {
             id = "monkeysphone.packages.android.http"
             implementationClass = "AndroidHttpConventionPlugin"
         }
+        register("androidJson") {
+            id = "monkeysphone.packages.android.json"
+            implementationClass = "AndroidSerializationConventionPlugin"
+        }
     }
 }

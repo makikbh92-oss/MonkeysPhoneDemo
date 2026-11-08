@@ -26,11 +26,12 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", platform(bom))
                 add("implementation", project(":packages:core:designsystem"))
 //                add("implementation", project(":core:navigation"))
-//                add("implementation", project(":core:data"))
+//                add("implementation", project(":packages:core:network"))
                 add("implementation", libs.findLibrary("androidx-compose-ui").get())
                 add("implementation", libs.findLibrary("androidx-compose-material3").get())
                 add("api", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
 //                add("implementation", project(":core:preview"))
+                add("implementation", libs.findLibrary("timber").get())
             }
 
             extensions.configure<LibraryExtension> {
